@@ -16,10 +16,13 @@ return [
     */
 
     'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
-        '%s%s',
+        '%s,%s,%s,%s,%s', // Added more %s for new domains
         'localhost,https://projectkelompok1.wuaze.com,localhost:3000,127.0.0.1,localhost:5173,127.0.0.1:8000,::1',
+        'https://projectwebsite2-production-ce64.up.railway.app', // <-- Add your API's production domain here
         Sanctum::currentApplicationUrlWithPort(),
-        // Sanctum::currentRequestHost(),
+        // Sanctum::currentRequestHost(), // This might be problematic if it picks up the API's domain only
+        '', // Placeholder if currentApplicationUrlWithPort() is empty
+        '' // Another placeholder
     ))),
 
     /*
